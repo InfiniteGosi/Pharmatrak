@@ -2,6 +2,13 @@
 
 A blockchain-based pharmaceutical supply chain tracking system built with Ethereum smart contracts and React. This decentralized application (DApp) enables transparent and immutable tracking of pharmaceutical products from manufacturer to end recipient.
 
+## Demo Video
+
+Watch the full demonstration of PharmaTrak in action:
+
+[![PharmaTrak Demo](https://img.shields.io/badge/▶️-Watch%20Demo-red?style=for-the-badge&logo=youtube)](YOUR_VIDEO_LINK_HERE)
+
+
 ## Features
 
 - **Batch Registration**: Manufacturers can register new pharmaceutical batches with manufacturing and expiration dates
@@ -211,3 +218,4 @@ Pharmatrak/
 - Grid view of all registered batches
 - Quick status overview
 - Click to view detailed information
+
