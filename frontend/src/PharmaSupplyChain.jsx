@@ -24,7 +24,7 @@ const CONTRACT_ABI = [
   "event BatchDelivered(string batchId, address indexed to, string location, uint256 timestamp)",
 ];
 
-// ⚠️ UPDATE địa chỉ này sau khi deploy
+// UPDATE địa chỉ này sau khi deploy
 const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 const PharmaSupplyChain = () => {
