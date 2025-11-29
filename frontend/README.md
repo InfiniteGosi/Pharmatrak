@@ -1,70 +1,240 @@
-# Getting Started with Create React App
+# PharmaTrak - Pharmaceutical Supply Chain Tracking System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A blockchain-based pharmaceutical supply chain tracking system built with Ethereum smart contracts and React. This decentralized application (DApp) enables transparent and immutable tracking of pharmaceutical products from manufacturer to end recipient.
 
-## Available Scripts
+## Demo Video
 
-In the project directory, you can run:
+Watch the full demonstration of PharmaTrak in action:
 
-### `npm start`
+[![PharmaTrak Demo](https://img.shields.io/badge/▶️-Watch%20Demo-red?style=for-the-badge&logo=youtube)](https://youtu.be/_dwUFxWZah8)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Batch Registration**: Manufacturers can register new pharmaceutical batches with manufacturing and expiration dates
+- **Transfer Tracking**: Track the movement of pharmaceutical products through the supply chain
+- **Delivery Confirmation**: Recipients can confirm delivery of pharmaceutical products
+- **Complete History**: View the complete transfer history of any batch
+- **Real-time Updates**: Automatic updates when blockchain events occur
+- **Transparent & Immutable**: All records are stored on the Ethereum blockchain
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend (Blockchain)
 
-### `npm run build`
+- **Solidity** - Smart contract development
+- **Hardhat** - Ethereum development environment
+- **Ethers.js** - Ethereum library for interacting with smart contracts
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **React** - UI framework
+- **Ethers.js v6** - Web3 integration
+- **Tailwind CSS** - Styling
+- **Lucide React** - Icons
+- **MetaMask** - Wallet integration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Prerequisites
 
-### `npm run eject`
+Before you begin, ensure you have the following installed:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [MetaMask](https://metamask.io/) browser extension
+- [Git](https://git-scm.com/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 1. Clone the Repository
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/InfiniteGosi/Pharmatrak.git
+cd Pharmatrak
+```
 
-## Learn More
+### 2. Backend Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+cd backend
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. Frontend Setup
 
-### Code Splitting
+```bash
+cd ../frontend
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Usage
 
-### Analyzing the Bundle Size
+### 1. Start Hardhat Local Blockchain
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Open a terminal and run:
 
-### Making a Progressive Web App
+```bash
+cd backend
+npx hardhat node
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Keep this terminal running. You should see output showing test accounts with their addresses and private keys.
 
-### Advanced Configuration
+### 2. Deploy Smart Contract
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Open a new terminal and deploy the contract:
 
-### Deployment
+```bash
+cd backend
+npx hardhat run scripts/deploy.js --network localhost
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Copy the deployed contract address from the output:
 
-### `npm run build` fails to minify
+```
+PharmaSupplyChain deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 3. Update Contract Address in Frontend
+
+Open `frontend/src/PharmaSupplyChain.jsx` and update the contract address:
+
+```javascript
+const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3"; // Your deployed address
+```
+
+### 4. Configure MetaMask
+
+1. Open MetaMask browser extension
+2. Click network dropdown → **Add network** → **Add a network manually**
+3. Enter these details:
+   - **Network Name**: Hardhat Local
+   - **RPC URL**: `http://127.0.0.1:8545`
+   - **Chain ID**: `1337`
+   - **Currency Symbol**: ETH
+4. Save and switch to this network
+
+### 5. Import Test Account to MetaMask
+
+1. Copy a private key from the Hardhat node terminal output
+2. In MetaMask: Click account icon → **Import Account**
+3. Paste the private key and import
+4. You should see ~10000 ETH balance
+
+### 6. Start Frontend Application
+
+```bash
+cd frontend
+npm start
+```
+
+The application will open at `http://localhost:3000`
+
+### 7. Connect MetaMask
+
+1. Click "Kết nối MetaMask" button in the application
+2. Approve the connection in MetaMask
+3. You're ready to use the application!
+
+## Smart Contract
+
+### Main Functions
+
+**Register Batch**
+
+```solidity
+function registerBatch(
+    string memory _batchId,
+    string memory _mfgDate,
+    string memory _expDate
+) public
+```
+
+**Transfer Batch**
+
+```solidity
+function transferBatch(
+    string memory _batchId,
+    address _to,
+    string memory _location
+) public
+```
+
+**Confirm Delivery**
+
+```solidity
+function confirmDelivery(string memory _batchId) public
+```
+
+**Get Batch Information**
+
+```solidity
+function getBatch(string memory _batchId) public view returns (...)
+```
+
+**Get Batch History**
+
+```solidity
+function getBatchHistory(string memory _batchId) public view returns (TransferRecord[] memory)
+```
+
+### Contract Features
+
+- **Ownership Control**: Only the current owner can transfer a batch
+- **Status Management**: Tracks batch status (Created, InTransit, Delivered)
+- **Event Logging**: Emits events for all major actions
+- **History Tracking**: Maintains complete transfer history
+- **Validation**: Input validation and error handling
+
+## Project Structure
+
+```
+Pharmatrak/
+├── backend/
+│   ├── contracts/
+│   │   └── PharmaSupplyChain.sol    # Smart contract
+│   ├── scripts/
+│   │   └── deploy.js                 # Deployment script
+│   ├── test/                         # Contract tests
+│   ├── hardhat.config.js            # Hardhat configuration
+│   └── package.json
+│
+└── frontend/
+    ├── src/
+    │   ├── PharmaSupplyChain.jsx    # Main React component
+    │   └── App.js
+    ├── public/
+    ├── package.json
+    └── tailwind.config.js
+```
+
+## Application Features
+
+### 1. Register Batch Tab
+
+- Register new pharmaceutical batches
+- Input batch ID, manufacturing date, and expiration date
+- Automatically assigns manufacturer address
+
+### 2. Transfer Tab
+
+- Transfer ownership of pharmaceutical batches
+- Specify recipient address and location
+- Only current owner can initiate transfer
+
+### 3. Confirm Delivery Tab
+
+- Confirm receipt of pharmaceutical products
+- Updates batch status to "Delivered"
+- Only current owner can confirm delivery
+
+### 4. Batch Information Display
+
+- View complete batch details
+- See current status (Created, In Transit, Delivered)
+- View complete transfer history with timestamps
+- Color-coded status badges
+
+### 5. All Batches Overview
+
+- Grid view of all registered batches
+- Quick status overview
+- Click to view detailed information
